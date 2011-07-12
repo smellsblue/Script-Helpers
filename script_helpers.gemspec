@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = "script_helpers"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.date         = "2011-07-11"
   s.summary      = "Script Helpers"
   s.description  = "A Rails 3 gem that allows easy inlining of css and JavaScript"

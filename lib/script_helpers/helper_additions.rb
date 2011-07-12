@@ -18,8 +18,12 @@ module ScriptHelpers
     end
 
     def script_contents
-      javascript_tag do
-        content_for :script
+      contents = content_for :script
+
+      if contents
+        javascript_tag do
+          contents
+        end
       end
     end
 
