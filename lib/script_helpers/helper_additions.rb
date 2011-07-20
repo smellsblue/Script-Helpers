@@ -2,7 +2,12 @@ module ScriptHelpers
   module HelperAdditions
     def script(options = {}, &block)
       if options.include? :src
-        content_for :script_tags, "\n#{javascript_include_tag options[:src]}".html_safe
+        @_script_helpers_script ||= {}
+
+        unless @_script_helpers_script[options[:src]]
+          @_script_helpers_script[options[:src]] = true
+          content_for :script_tags, "\n#{javascript_include_tag options[:src]}".html_safe
+        end
       end
 
       if block
@@ -29,7 +34,12 @@ module ScriptHelpers
 
     def css(options = {}, &block)
       if options.include? :src
-        content_for :css_tags, "\n#{stylesheet_link_tag options[:src]}".html_safe
+        @_script_helpers_css ||= {}
+
+        unless @_script_helpers_css[options[:src]]
+          @_script_helpers_css[options[:src]] = true
+          content_for :css_tags, "\n#{stylesheet_link_tag options[:src]}".html_safe
+        end
       end
 
       if block

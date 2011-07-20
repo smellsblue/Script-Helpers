@@ -69,3 +69,17 @@ Or including a file:
 
 Though, inline styles are not supported right now, as they should
 probably go with all the rest of your styling.
+
+# Caching
+
+If you try to include the same script or css stylesheet twice, the
+script and css helpers will prevent the second load of the
+script. This allows you to put your script loading into partials and
+yet only have the script loaded once.
+
+Thus:
+
+    <% script :src => "myScript.js" %>
+    <% script :src => "myScript.js" %>
+
+will only output 1 instance of myScript.js.
