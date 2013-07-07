@@ -7,12 +7,16 @@ module ScriptHelpers
       modified_application_layout = false
 
       unless application_layout_contents.include?("<%= script_contents %>") || application_layout_contents.include?("<%= script_tag_contents %>")
-        gsub_file application_layout, /<\/body>/, "<%= script_tag_contents %>\n<%= script_contents %>\n</body>"
+        gsub_file application_layout, /( *)<\/body>/, '  \1<%= script_tag_contents %>
+  \1<%= script_contents %>
+\1</body>'
         modified_application_layout = true
       end
 
       unless application_layout_contents.include?("<%= css_contents %>") || application_layout_contents.include?("<%= css_tag_contents %>")
-        gsub_file application_layout, /<\/head>/, "  <%= css_tag_contents %>\n  <%= css_contents %>\n</head>"
+        gsub_file application_layout, /( *)<\/head>/, '  \1<%= css_tag_contents %>
+  \1<%= css_contents %>
+\1</head>'
         modified_application_layout = true
       end
 
